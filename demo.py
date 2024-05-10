@@ -19,12 +19,44 @@ for page_cont in web_page_name:
     caricature_urls = 'https://www.junke666.com' + page_url
     print('漫画名:',page_name)
     print('漫画链接:',caricature_urls)
-    # for cart_urls in caricature_urls:
-    #     response = requests.get(url = caricature_urls)
-    #     soup = BeautifulSoup(response.text,'html.parser')
-    #     cart_cont = soup.find_all('div',class_='mh-item')
-    #     for cart_conts in cart_cont:
-    #         pass
+    print('#'*30)
+    response = requests.get(url = caricature_urls)
+    response.encoding = 'gbk'
+    soup = BeautifulSoup(response.text,'html.parser')
+    cart_cont = soup.find_all('div',class_='mh-item')
+    for cart_conts in cart_cont:
+        cart_name = cart_conts.h2.get_text()
+        print('漫画名:',cart_name)
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class UrlManager():
