@@ -1,0 +1,5 @@
+
+网络解析器
+BeautifulSoup 
+soup = BeautifulSoup(name,attrs,string)
+
