@@ -7,7 +7,7 @@ headers = {
     }
 
 url = 'https://www.junke666.com/cate_list/'
-
+url2 = ''
 response = requests.get(url,headers=headers)
 response.encoding = 'gbk'
 content = BeautifulSoup(response.text,'html.parser')
