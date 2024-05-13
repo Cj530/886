@@ -10,4 +10,5 @@ it = re.finditer(r"\d+","123453435fdg3434")
 for match in it:
     print(match.group())
 
-    
+with open('demo.txt','w',encoding='utf-8') as f:
+    f.write()
