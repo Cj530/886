@@ -11,3 +11,40 @@ requests.delete() 向HTML提交删除请求 对应HTTP中的delete方法
 get 请求
 requests.get()
 r = requests.get(url)
+
+请求网站拼接可以用 params
+
+data ={
+    'name' = 'blue'
+    'age' = 22
+}
+# url 拼接
+r = requests.get("https://soga.com/get",params=data)
+
+在网络请求中，会遇到状态码是3开头的重定向问题，在Requests中是默认开启允许重定向的，即遇到重定向时，会自动继续访问。
+#重定向(False=关闭重定向，True=开户重定向)
+requests.get('https://www.baidu.com/',allow_redirects=False)
+
+禁止证书验证（verify）
+这个时候由于抓包工具提供的证书并不是由受信任的数字证书颁发机构颁发的，所以证书的验证会失败，所以我们就要关闭证书验证。
+# 证书验证（False=关闭验证，True=开启验证）
+requests.get('https://baidu.com/',verify=False)
+
+设置超时（timeout）
+设置访问时，设置timeout参数即可
+#设置超时（timeout）
+requests.get('https://baidu.com/',timeout=0.1)
+
+
+POST请求
+POST请求就可以使用post()方法，并且将需要提交的数据传递给data参数即可：
+
+#发送请求
+res = requests.post('https://baidu.com/',data={'username'='blue','password':123})
+#encoding设置编码
+res.encoding='utf-8'
+#text接收返回内容
+print(res.text)
+
+
+
