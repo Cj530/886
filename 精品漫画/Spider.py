@@ -27,8 +27,9 @@ for page_cont in web_page_name:
     for cart_conts in cart_cont:
         cart_name = cart_conts.h2.get_text()
         print('漫画名:',cart_name)
-            
 
+        base_url ='https://www.junke666.com/cate_1_page1/'
+        
 
 
 
