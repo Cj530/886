@@ -1,0 +1,13 @@
+
+requests 库7个主要方法
+
+requests.request()
+requests.get()
+requests.post()
+requests.head()
+requests.patch()  向HTML网页提交局部请求修改的请求 对应http中的PATCH方法
+requests.delete() 向HTML提交删除请求 对应HTTP中的delete方法
+
+get 请求
+requests.get()
+r = requests.get(url)

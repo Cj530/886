@@ -1,0 +1,19 @@
+
+网络解析器
+BeautifulSoup 
+soup = BeautifulSoup(name,attrs,string)
+
+soup.find_all('a')
+
+node.name
+node['href']
+node.get_text()
+
+
+
+
+
+
+
+Online Passersby  在线路人
+
