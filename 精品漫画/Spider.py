@@ -13,23 +13,33 @@ response.encoding = 'gbk'
 content = BeautifulSoup(response.text,'html.parser')
 web_page = content.find('div',class_='flex-1') 
 web_page_name = web_page.find_all('a')[1:]
+
 for page_cont in web_page_name:
     page_url = page_cont.get('href')
+    if page_url.endswith('/'):
+       page_url = page_url[:-1]  #删除网址最后的'/' ,用来处理翻页
     page_name = page_cont.text
     caricature_urls = 'https://www.junke666.com' + page_url
     print('漫画名:',page_name)
     print('漫画链接:',caricature_urls)
     print('#'*30)
+    #漫画名称列表下级 
     response = requests.get(url = caricature_urls)
     response.encoding = 'gbk'
     soup = BeautifulSoup(response.text,'html.parser')
     cart_cont = soup.find_all('div',class_='mh-item')
+    page_num = 1
     for cart_conts in cart_cont:
         cart_name = cart_conts.h2.get_text()
         print('漫画名:',cart_name)
-
-        base_url ='https://www.junke666.com/cate_1_page1/'
-        
+        base_url = caricature_urls + '_page' + str(page_num)
+        res = requests.get(base_url)
+        res.encoding = 'gbk'
+        soup = BeautifulSoup(res.text,'html.parser')
+        web_page_names = soup.find_all('div',class_='mh-item-tip')
+        page_names = web_page_names.find_all('a')
+        print(page_names)
+        page_num +=1      
 
 
 
