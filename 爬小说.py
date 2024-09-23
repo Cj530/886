@@ -14,6 +14,6 @@ web_cont = content.find('div',class_='listmain')
 for web_list in web_cont:
     list_text = web_list.text
     list_link = web_list['href']
-    print(f'列表名称:{list_text},\n 列表链接:{list_link} ' )
-  
+    print(list_text,list_link)
+     
 
