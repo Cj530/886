@@ -10,10 +10,11 @@ url = 'http://www.cxbz958.cc/jianlai/'
 response = requests.get(url,headers=headers)
 content = BeautifulSoup(response.content,'html.parser')
 web_cont = content.find('div',class_='listmain')
+web_dd = web_cont.find_all('a')
 
-for web_list in web_cont:
-    list_text = web_list.text
-    list_link = web_list['href']
-    print(list_text,list_link)
+for list in web_dd:
+    list_name = list.get_text()
+    list_url = list.get('href')
+    print(f'章节名:{list_name}\n章节链接:{list_url}')
      
 
