@@ -1,25 +1,28 @@
 <!DOCTYPE html>
+{% load txfilter %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>这是一个页面-{{blog_name}}</title>
 </head>
 <body>
+
+<!-- <img src="{% static 'img/pexels.jpg' %}" alt="背景图"> -->
 接受后台传来的数据</br>
 
-博客名称：{{blog_name|default:"尚未配置博客网站的名称"}}
-
-
+博客名称：{{blog_name|default:"尚未配置博客网站的名称"}}</br></br></br>
+最佳文章：{{articlelist|add:lie}}
+</br></br>
+</br></br>
 博客文章列表 : </br>
 <ul>
     {%for article in articlelist%}
-    {%if article.author == '作1'%}
-        <li>{{article.title}} 作者：{{article.author}}</li>
-    {%elif article.author == '张三'%}
-        <li style="color: aqua;">{{article.title}} 作者：{{article.author}}</li>    
-    {%else%}
-        <li style="color: brown;">{{article.title}} 作者：{{article.author}}</li>
-    {%endif%}
+        {% if forloop.last %}
+        <li style="color: red;">{{forloop.counter}}、{{article.title|FilterMinGan:"同学"}} 作者：{{article.author}}</li>
+        {% else %}
+        <li>{{forloop.counter}}、{{article.title|FilterMinGan:"同学"}} 作者：{{article.author}}</li>
+        {% endif %}
     {%empty%}
         <li>暂时还没有文章</li>
     {%endfor%}
