@@ -21,6 +21,8 @@ import blogs.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',blogs.views.index),
-    path('getnews/',blogs.views.getNews),
-    path('',blogs.views.myHome),
+    path('getnews/',blogs.views.getNews), #新闻列表接口
+    path('',blogs.views.myHome), #网页首页
+    path('about/',blogs.views.aboutme),#关于我
 ]
+

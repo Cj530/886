@@ -1,13 +1,16 @@
 {% extends 'Tbase.html' %}
+
 {%load txfilter%}
+关于我
 {%load static%}
 
 {%block tongtitle%}
-首页在玩Django
+关于我
 {%endblock%}
+
 {% block tongcontent %}
 <ul>
-    {%for article in articlelist%}
+    {%for article in list%}
         {% if forloop.last %}
         <li style="color: red;">{{forloop.counter}}、{{article.title|FilterMinGan:"同学"}} 作者：{{article.author}}</li>
         {% else %}
@@ -17,7 +20,4 @@
         <li>暂时还没有文章</li>
     {%endfor%}
 </ul>
-</br>
-{%include 'comments.html'%}
-
 {%endblock%}

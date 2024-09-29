@@ -22,3 +22,8 @@ def myHome(request):
     list=[{'title':"这里是我的 敏感词1",'author':"张三",'date':datetime.strptime("2024-02-03 10:21:20",'%Y-%m-%d %H:%M:%S')},
            {'title':"django为什么这么帅啊",'author':"李四",'date':datetime.strptime("2024-02-03 10:21:20",'%Y-%m-%d %H:%M:%S')}]
     return render(request,"index.html",context={'blog_name':blog_name,"articlelist":list,'lie':lie})
+
+def aboutme(request):
+    list=[{'title':"这是关于我的一个文章列表",'author':"张三",'date':datetime.strptime("2024-02-03 10:21:20",'%Y-%m-%d %H:%M:%S')},
+           {'title':"django为什么这么帅啊",'author':"李四",'date':datetime.strptime("2024-02-03 10:21:20",'%Y-%m-%d %H:%M:%S')}]
+    return render(request,'about.html',context={"list":list})
