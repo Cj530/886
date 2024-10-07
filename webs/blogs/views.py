@@ -69,5 +69,11 @@ def useredit_action(request):
     sex = request.POST['sex']
     age = request.POST['age']
     print(userID,username,password,truename,sex,age)
-    mycursor.execute('update user_info set userID,username=%s,password=%s,truename=%s,sex=%s,age=%s) where userID=%s', (userID,username,password,truename,sex,age))
+    mycursor.execute('update user_info set username=%s,password=%s,truename=%s,sex=%s,age=%s where userID=%s', (username,password,truename,sex,age,userID))
     return redirect('/userlist/')
+
+def userdel_action(request,userID):
+    print(type(userID),userID)
+    mycursor.execute('delete from user_info where userID=%s',(userID,))
+    return redirect('/userlist/')
+    

@@ -28,6 +28,7 @@ urlpatterns = [
     path('register/add/',blogs.views.regiadd),#注册功能
     path('userlist/',blogs.views.userlist),#用户管理
     path('userlist/edit/',blogs.views.useredit), #编辑用户页
-    path('userlist/edit/action',blogs.views.useredit_action), #修改用户页
+    path('userlist/edit/action/',blogs.views.useredit_action), #数据库中修改用户信息功能
+    path('userlist/del/<str:userID>/',blogs.views.userdel_action), #数据库中删除页面的url功能
 ]
 

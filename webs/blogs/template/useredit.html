@@ -5,8 +5,9 @@
 
 {%block tongcontent%}
 <h1>用户管理更新</h1><br/>
-<form action="/action/" method="post">
+<form action="action/" method="post">
     {%csrf_token%}
+    <input type="hidden" name="userID" id="userID" value="{{curuser.0}}" >
     用户编号：<input type="text" name="userID" id="userID" value="{{curuser.0}}" disabled><br/>
     用户账号：<input type="text" name="username" id="username" value="{{curuser.1}}"><br/>
     用户密码：<input type="password" name="password" id="password" value="{{curuser.2}}"><br/>
