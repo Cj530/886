@@ -24,5 +24,10 @@ urlpatterns = [
     path('getnews/',blogs.views.getNews), #新闻列表接口
     path('',blogs.views.myHome), #网页首页
     path('about/',blogs.views.aboutme),#关于我
+    path('register/',blogs.views.register),#注册页面
+    path('register/add/',blogs.views.regiadd),#注册功能
+    path('userlist/',blogs.views.userlist),#用户管理
+    path('userlist/edit/',blogs.views.useredit), #编辑用户页
+    path('userlist/edit/action',blogs.views.useredit_action), #修改用户页
 ]
 

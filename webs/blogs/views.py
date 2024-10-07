@@ -1,8 +1,9 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 import json
 from datetime import datetime
+from django.db import connection
 
-
+mycursor = connection.cursor() #获取游标对象
 
 def index(request):
     blogs = request.GET['blogs']
@@ -27,3 +28,46 @@ def aboutme(request):
     list=[{'title':"这是关于我的一个文章列表",'author':"张三",'date':datetime.strptime("2024-02-03 10:21:20",'%Y-%m-%d %H:%M:%S')},
            {'title':"django为什么这么帅啊",'author':"李四",'date':datetime.strptime("2024-02-03 10:21:20",'%Y-%m-%d %H:%M:%S')}]
     return render(request,'about.html',context={"list":list})
+
+def register(request):
+    return render(request,'register.html',)
+
+def regiadd(request):
+    userID = request.POST['userID']
+    username = request.POST['username']
+    password = request.POST['password']
+    truename = request.POST['truename']
+    sex = request.POST['sex']
+    age = request.POST['age']
+    print(userID,username,password,truename,sex,age)
+    mycursor.execute('insert into user_info(userID,username,password,truename,sex,age) values(%s,%s,%s,%s,%s,%s)',(userID,username,password,truename,sex,age))
+    return HttpResponse("恭喜你，注册成功")
+
+
+def userlist(request):
+    mycursor.execute('select * from user_info')
+    myusert = mycursor.fetchall()
+    mydes = [deshead[0] for deshead in mycursor.description]
+    myuser = []
+    for user in myusert:
+       myzip = zip(mydes,user)
+       myuser.append(dict(myzip))
+    return render(request,'userlist.html',{"myusert":myusert,"myuser":myuser})
+
+def useredit(request):
+    userID= request.GET['userID']
+    print(type(userID))
+    mycursor.execute("select * from user_info where userID=%s",(userID,))
+    curuser = mycursor.fetchone()
+    return render(request,'useredit.html',{'curuser':curuser})
+
+def useredit_action(request):
+    userID = request.POST['userID']
+    username = request.POST['username']
+    password = request.POST['password']
+    truename = request.POST['truename']
+    sex = request.POST['sex']
+    age = request.POST['age']
+    print(userID,username,password,truename,sex,age)
+    mycursor.execute('update user_info set userID,username=%s,password=%s,truename=%s,sex=%s,age=%s) where userID=%s', (userID,username,password,truename,sex,age))
+    return redirect('/userlist/')

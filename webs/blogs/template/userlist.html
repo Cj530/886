@@ -1,0 +1,32 @@
+{% extends 'Tbase.html'%}
+{%block tongtitle%}
+用户管理
+{%endblock%}
+
+{%block tongcontent%}
+<h1>用户管理</h1><br/>
+<table border="1" cellpadding="0" cellspacing="0">
+    <tr>
+      <th>用户ID</th>
+      <th>用户账号</th>
+      <th>用户密码</th>
+      <th>用户姓名</th>
+      <th>用户性别</th>
+      <th>用户年龄</th>
+      <th>操作</th>
+    </tr>
+   {%for myuse in myuser%}   
+      <tr>
+         <td>{{myuse.userID}}</td>
+         <td>{{myuse.username}}</td>
+         <td>{{myuse.password}}</td>
+         <td>{{myuse.truename}}</td>
+         <td>{{myuse.sex}}</td>
+         <td>{{myuse.age}}</td>
+         <td><a href="/userlist/edit/?userID={{myuse.userID}}">编辑</a> <a href="/userlist/del/">删除</a></td>
+       </tr>
+   {%endfor%}
+
+</table>
+
+{%endblock%}
